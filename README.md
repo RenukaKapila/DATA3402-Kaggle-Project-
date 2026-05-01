@@ -4,11 +4,9 @@ This repository uses the Airline Passenger Satisfaction dataset from Kaggle to p
 
 ## Overview
 
-This project uses the Airline Passenger Satisfaction dataset from Kaggle. The goal is to predict whether an airline passenger is satisfied or dissatisfied based on passenger details, travel information, service ratings, and delay-related features.
+This project uses the Airline Passenger Satisfaction dataset from Kaggle to predict whether passengers are satisfied or dissatisfied.
 
-The dataset is a good fit for a tabular classification project because every row represents one passenger survey response, and every column represents a feature related to the passenger, flight, service experience, or satisfaction label.
-
-The main work included cleaning the data, handling missing arrival delay values, checking outliers, visualizing feature patterns, encoding categorical variables, training models, and comparing performance.
+We completed a full tabular machine learning workflow, including data cleaning, visualization, feature preparation, model training, and evaluation.
 
 The best-performing model was Random Forest, with an accuracy of about **96.20%**.
 
