@@ -264,6 +264,10 @@ The Random Forest model performed the best.
 
 Random Forest likely performed better because it combines many decision trees. This makes it more stable than a single Decision Tree and helps it capture more complex patterns in the data.
 
+We also created a ROC curve to compare the models visually. The ROC curve showed that Random Forest had the strongest performance overall, which matched the accuracy comparison.
+
+<img width="751" height="538" alt="image" src="https://github.com/user-attachments/assets/edc5432a-5a8b-4f0a-b61e-94412a1df98e" />
+
 ---
 
 ## Feature Importance
