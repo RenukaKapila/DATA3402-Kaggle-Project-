@@ -1,6 +1,6 @@
 # Airline Satisfaction Predictor
 
-* **One Sentence Summary:** This repository uses the Airline Passenger Satisfaction dataset from Kaggle to predict whether a passenger is satisfied or dissatisfied using tabular machine learning models.
+This repository uses the Airline Passenger Satisfaction dataset from Kaggle to predict whether a passenger is satisfied or dissatisfied using tabular machine learning models.
 
 ## Overview
 
