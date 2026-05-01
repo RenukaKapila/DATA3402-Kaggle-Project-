@@ -69,7 +69,8 @@ The only column with missing values was `Arrival Delay in Minutes`.
 
 We did not delete these rows because delay information could still be useful for predicting passenger satisfaction. So we decided to use correlation matrix to check if we could use other features to fill in the missing values.
 
-<img width="802" height="610" alt="image" src="https://github.com/user-attachments/assets/b859d0c5-0f58-47c8-9255-3e035168666a" />
+<img width="1508" height="1190" alt="corolation plot" src="https://github.com/user-attachments/assets/0400e7a2-8622-49c2-9691-1dcae13316af" />
+
 
 To fill these missing values, we used information from `Departure Delay in Minutes`. These two columns had a strong positive correlation of about **0.97**, meaning flights that leave late usually also arrive late.
 
