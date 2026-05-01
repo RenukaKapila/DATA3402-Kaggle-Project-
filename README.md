@@ -120,6 +120,7 @@ The main visualizations included:
 * Categorical feature comparisons
 * Service rating difference chart
 * Correlation heatmap
+
 <img width="573" height="378" alt="image" src="https://github.com/user-attachments/assets/18d1dd3d-1cdc-4699-9d8f-fe715dea8030" />
 
 The target classes were slightly imbalanced.
@@ -130,9 +131,11 @@ The target classes were slightly imbalanced.
 | Satisfied | 45,025 | 43.33% |
 
 The numerical features showed some patterns, but many of the distributions overlapped between satisfied and dissatisfied passengers. This means those features may help the model, but they were not the strongest features by themselves.
+
 <img width="691" height="495" alt="image" src="https://github.com/user-attachments/assets/e8a59e7c-004c-4691-907e-06a99d2e2115" />
 
 The categorical features showed clearer patterns. Customer Type, Type of Travel, and Class appeared more connected to satisfaction than Gender.
+
 <img width="674" height="456" alt="image" src="https://github.com/user-attachments/assets/1e481aba-bca5-4169-a3e7-38ff74aa0ec0" />
 
 The strongest visualization was the service rating difference chart. It compared average service ratings between satisfied and dissatisfied passengers.
