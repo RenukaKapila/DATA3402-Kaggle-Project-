@@ -171,18 +171,7 @@ Business travelers and business class passengers were more likely to be satisfie
 
 The most useful visualization was the **service rating difference chart**.
 
-This chart compared average service ratings between satisfied and dissatisfied passengers for features such as:
-
-- Online boarding
-- Inflight wifi service
-- Seat comfort
-- Inflight entertainment
-- On-board service
-- Leg room service
-- Cleanliness
-- Food and drink
-- Checkin service
-- Ease of Online booking
+This chart compared average service ratings between satisfied and dissatisfied passengers for features such as Online boarding, Inflight wifi service, Seat comfort and so on.
 
 The biggest difference was **Online boarding**. Satisfied passengers gave much higher online boarding ratings than dissatisfied passengers.
 
@@ -194,8 +183,8 @@ Before training the models, I prepared the data using these steps:
 
 1. Made a copy of the cleaned dataset.
 2. Encoded the target variable:
-   - `0 = dissatisfied`
-   - `1 = satisfied`
+   - 0 = dissatisfied
+   - 1 = satisfied
 3. Separated the data into `X` and `y`.
    - `X` contains the features.
    - `y` contains the target variable.
