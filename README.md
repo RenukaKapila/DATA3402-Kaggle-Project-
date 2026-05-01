@@ -132,15 +132,17 @@ The target classes were slightly imbalanced.
 
 The numerical features showed some patterns, but many of the distributions overlapped between satisfied and dissatisfied passengers. This means those features may help the model, but they were not the strongest features by themselves.
 
-<img width="691" height="495" alt="image" src="https://github.com/user-attachments/assets/e8a59e7c-004c-4691-907e-06a99d2e2115" />
+<img width="708" height="513" alt="image" src="https://github.com/user-attachments/assets/27f26e94-dce7-43e1-8865-554e53e04ca8" />
+
 
 The categorical features showed clearer patterns. Customer Type, Type of Travel, and Class appeared more connected to satisfaction than Gender.
 
-<img width="674" height="456" alt="image" src="https://github.com/user-attachments/assets/1e481aba-bca5-4169-a3e7-38ff74aa0ec0" />
+<img width="742" height="512" alt="image" src="https://github.com/user-attachments/assets/cf7309e8-05a3-42d4-a0f5-d917445389c8" />
+
 
 The strongest visualization was the service rating difference chart. It compared average service ratings between satisfied and dissatisfied passengers.
 
-<img width="707" height="352" alt="image" src="https://github.com/user-attachments/assets/d948d0db-169a-4f46-8241-6a0be2797923" />
+<img width="818" height="407" alt="image" src="https://github.com/user-attachments/assets/9b9d9b51-c218-49a0-a280-1cef082debf2" />
 
 
 Online boarding had the largest average rating difference between the two groups.
