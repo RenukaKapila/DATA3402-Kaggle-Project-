@@ -1,15 +1,19 @@
-# Airline Passenger Satisfaction Prediction
+# Airline Satisfaction Predictor
 
 ## Project Overview
 
-This project uses the **Airline Passenger Satisfaction** dataset from Kaggle to predict whether a passenger is **satisfied** or **neutral or dissatisfied** with their airline experience.
+This project uses the **Airline Passenger Satisfaction** dataset from Kaggle to predict whether airline passengers are **satisfied** or **dissatisfied** based on passenger information, travel details, service ratings, and delay-related features.
 
-The main goal of this project is not only to build a classification model, but also to understand which controllable airline service factors have the strongest relationship with passenger dissatisfaction. These factors include online boarding, inflight wifi service, seat comfort, inflight entertainment, cleanliness, food and drink, leg room service, and delay-related features.
+The project is a **binary classification problem** because the target variable has two possible outcomes.
 
-## Kaggle Dataset
+The main goal is not only to build a prediction model, but also to understand which features are most connected to passenger satisfaction. I was especially interested in service-related features that airlines could improve, such as online boarding, inflight wifi service, seat comfort, inflight entertainment, cleanliness, and leg room service.
+
+## Dataset
 
 Dataset link:  
-https://www.kaggle.com/datasets/teejmahal20/airline-passenger-satisfaction?resource=download&select=train.csv
+https://www.kaggle.com/datasets/teejmahal20/airline-passenger-satisfaction
+
+The dataset contains airline passenger survey responses. Each row represents one passenger, and each column gives information about that passenger, their trip, their service ratings, delay information, or their satisfaction result.
 
 ## Problem Type
 
@@ -17,17 +21,19 @@ This is a **binary classification** problem.
 
 The target variable is:
 
-- `neutral or dissatisfied`
 - `satisfied`
+- `neutral or dissatisfied`
+
+For presentation and explanation purposes, I refer to `neutral or dissatisfied` as **dissatisfied**. The original dataset label was not changed.
 
 For machine learning, the target variable was encoded as:
 
-- `0 = neutral or dissatisfied`
+- `0 = dissatisfied`
 - `1 = satisfied`
 
 ## Dataset Description
 
-The dataset contains airline passenger survey information. It includes passenger details, travel information, service ratings, and delay-related variables.
+The dataset has about **103,000 rows**.
 
 Some of the main features include:
 
@@ -55,170 +61,240 @@ Some of the main features include:
 - Arrival Delay in Minutes
 - Satisfaction
 
-The dataset originally included an unnecessary index column called `Unnamed: 0`, which was removed because it did not provide useful information for prediction.
+The service rating columns are mostly on a scale from **0 to 5**, where higher values usually mean better ratings.
 
-## Data Summary
+## Data Cleaning
 
-The training dataset contains:
+### Removed Extra Index Column
 
-| Item | Value |
+The dataset included an extra column called `Unnamed: 0`. This column was removed because it was only an index column and did not provide useful information for prediction.
+
+### Duplicate Rows
+
+I checked for duplicate rows and found:
+
+| Check | Result |
 |---|---:|
-| Rows | 103,904 |
-| Columns before cleaning | 25 |
-| Columns after removing `Unnamed: 0` | 24 |
-| Target variable | satisfaction |
-| Problem type | Binary classification |
+| Duplicate rows | 0 |
 
-Most columns had no missing values. The only column with missing data was:
+Since there were no duplicate rows, no duplicate records needed to be removed.
+
+### Missing Values
+
+The only column with missing values was:
 
 | Column | Missing Values |
 |---|---:|
 | Arrival Delay in Minutes | 310 |
 
-The missing values in `Arrival Delay in Minutes` were handled before machine learning.
+Instead of deleting these rows, I filled the missing values using a simple nearest-match approach.
 
-## Project Goals
+First, I checked the relationship between **Departure Delay in Minutes** and **Arrival Delay in Minutes**. These two columns had a very strong positive correlation of about **0.97**.
 
-The main goals of this project were:
+Because of this strong relationship, I used departure delay to estimate the missing arrival delay values.
 
-1. Load and inspect the airline passenger satisfaction dataset.
-2. Identify categorical and numerical features.
-3. Check for missing values and outliers.
-4. Visualize feature distributions by satisfaction class.
-5. Determine which features appear most connected to satisfaction.
-6. Prepare the data for machine learning.
-7. Train classification models.
-8. Compare model performance.
-9. Identify the most important predictors of passenger satisfaction.
+For each row where arrival delay was missing:
 
-## Exploratory Data Analysis
+1. I looked at that row’s departure delay.
+2. I found the three rows with the closest departure delay values where arrival delay was already known.
+3. I averaged those three known arrival delay values.
+4. I used that average to fill the missing arrival delay.
 
-The visualization section focused on comparing the two satisfaction groups: **neutral or dissatisfied** and **satisfied**.
+This method is similar to the idea behind K-nearest neighbors, but I did not train a KNN model. I only used a simple nearest-match approach.
 
-The visualizations included:
+After filling the missing values, the dataset had **0 missing values**.
 
-- Target class distribution
-- Numerical feature distributions
-- Categorical feature comparisons
-- Service rating gap analysis
-- Delay feature comparison
-- Top service features separating satisfaction groups
+## Outlier Check
 
-### Main Visualization Findings
+I checked for outliers using the **IQR method**.
 
-The target classes were slightly imbalanced, with more passengers labeled as **neutral or dissatisfied** than **satisfied**, but the imbalance was not extreme.
+There were many outliers in:
 
-The service rating features showed some of the strongest differences between satisfied and dissatisfied passengers. In particular, the following features appeared important:
+- Flight Distance
+- Departure Delay in Minutes
+- Arrival Delay in Minutes
+
+I decided not to remove these outliers because they may represent real airline situations. For example, long flights and large delays can naturally happen because of weather, maintenance issues, airport delays, or other travel disruptions.
+
+Removing these rows could remove useful information from the model.
+
+## Target Variable and Class Balance
+
+The target variable was **satisfaction**.
+
+The dataset had a small class imbalance:
+
+| Class | Count | Percentage |
+|---|---:|---:|
+| Dissatisfied | 58,879 | 56.67% |
+| Satisfied | 45,025 | 43.33% |
+
+The imbalance was not extreme, so accuracy was still useful. However, I also used precision, recall, F1-score, and confusion matrices to evaluate the models more carefully.
+
+## Data Visualization
+
+The visualization section compared satisfied and dissatisfied passengers.
+
+### Numerical Features
+
+I looked at numerical features such as:
+
+- Age
+- Flight Distance
+- Departure Delay in Minutes
+- Arrival Delay in Minutes
+
+These features showed some patterns, but many of the distributions overlapped between satisfied and dissatisfied passengers. This means they may help the model, but they are not strong enough by themselves.
+
+### Categorical Features
+
+I also looked at categorical features such as:
+
+- Gender
+- Customer Type
+- Type of Travel
+- Class
+
+Gender did not show a very strong difference. However, Customer Type, Type of Travel, and Class showed clearer patterns.
+
+Business travelers and business class passengers were more likely to be satisfied, while personal travel and economy class passengers were more likely to be dissatisfied.
+
+### Service Rating Difference
+
+The most useful visualization was the **service rating difference chart**.
+
+This chart compared average service ratings between satisfied and dissatisfied passengers for features such as:
 
 - Online boarding
+- Inflight wifi service
+- Seat comfort
+- Inflight entertainment
+- On-board service
+- Leg room service
+- Cleanliness
+- Food and drink
+- Checkin service
+- Ease of Online booking
+
+The biggest difference was **Online boarding**. Satisfied passengers gave much higher online boarding ratings than dissatisfied passengers.
+
+Other important service features included:
+
 - Inflight entertainment
 - Seat comfort
 - On-board service
 - Leg room service
 - Cleanliness
 
-Categorical features also showed useful patterns. Passenger satisfaction appeared to be related to:
+Based on the visualizations, **Online boarding** appeared to be one of the strongest features before modeling.
 
+## Data Preparation for Machine Learning
+
+Before training the models, I prepared the data using these steps:
+
+1. Made a copy of the cleaned dataset.
+2. Encoded the target variable:
+   - `0 = dissatisfied`
+   - `1 = satisfied`
+3. Separated the data into `X` and `y`.
+   - `X` contains the features.
+   - `y` contains the target variable.
+4. Removed the original satisfaction column, encoded satisfaction column, and ID column from `X`.
+5. Used one-hot encoding to convert categorical text columns into numerical 0/1 columns.
+6. Split the data into training and testing sets.
+7. Scaled the features for Logistic Regression.
+
+The categorical columns that were one-hot encoded included:
+
+- Gender
 - Customer Type
 - Type of Travel
 - Class
 
-Business class passengers and business travel passengers were more likely to be satisfied, while economy class and personal travel passengers were more likely to be neutral or dissatisfied.
+## Train/Test Split
 
-Delay features were highly skewed. Most flights had small delays, while a smaller number had very large delays. Delays may help predict satisfaction, but they did not appear to explain satisfaction as strongly as service-related features.
+I used an **80/20 train-test split**.
 
-## Best Feature from Visualization
+This means:
 
-Based on the visualizations, **Online boarding** appeared to be one of the strongest individual features for predicting passenger satisfaction.
+- 80% of the data was used for training.
+- 20% of the data was used for testing.
 
-This feature had one of the largest average rating gaps between satisfied and neutral/dissatisfied passengers. Satisfied passengers tended to give much higher online boarding ratings, while dissatisfied passengers gave lower ratings.
+I also used a **stratified split** so the training and testing sets kept a similar satisfied/dissatisfied class balance as the original dataset.
 
-Because of this, online boarding was expected to be an important predictor in the machine learning models.
+This helped make the model evaluation more fair.
 
-## Data Cleaning and Preparation
+## Feature Scaling
 
-Before training machine learning models, the dataset was prepared using the following steps:
+I used **StandardScaler** for Logistic Regression because the numerical features had very different ranges.
 
-1. Removed the unnecessary `Unnamed: 0` column.
-2. Removed the `id` column because it was only an identifier.
-3. Handled missing values in `Arrival Delay in Minutes`.
-4. Separated the features from the target variable.
-5. Encoded the target variable into 0 and 1.
-6. Converted categorical variables into numerical dummy variables using one-hot encoding.
-7. Split the data into training and testing sets.
-8. Scaled numerical features for Logistic Regression.
+For example:
 
-The categorical variables were encoded because machine learning models cannot directly use text values such as `Male`, `Female`, `Business travel`, or `Eco`.
+- Service ratings were mostly from 0 to 5.
+- Flight Distance could be close to 5,000.
+- Delay values could go above 1,000 minutes.
 
-The numerical features were scaled for Logistic Regression because this model can be affected by features being on very different scales.
+Scaling helped Logistic Regression handle the different feature ranges more fairly.
+
+Decision Tree and Random Forest did not need scaled data because they are tree-based models.
 
 ## Machine Learning Models
 
-Two classification models were trained:
+I trained three models:
 
 1. Logistic Regression
 2. Decision Tree Classifier
+3. Random Forest Classifier
 
-### Logistic Regression
-
-Logistic Regression was used as the first baseline machine learning model.
-
-The model achieved an accuracy of approximately:
-
-| Model | Accuracy |
-|---|---:|
-| Logistic Regression | 87.66% |
-
-Logistic Regression performed well overall, but it was slightly better at identifying neutral or dissatisfied passengers than satisfied passengers.
-
-### Decision Tree Classifier
-
-The Decision Tree Classifier was used as a second model. This model performed better than Logistic Regression.
-
-| Model | Accuracy |
-|---|---:|
-| Decision Tree | 94.48% |
-
-The Decision Tree model performed better because it can capture more complex decision patterns in the data.
-
-## Model Comparison
+## Model Results
 
 | Model | Accuracy |
 |---|---:|
 | Logistic Regression | 87.66% |
 | Decision Tree Classifier | 94.48% |
+| Random Forest Classifier | 96.20% |
 
-The Decision Tree Classifier had the highest accuracy. This suggests that passenger satisfaction may depend on non-linear patterns and combinations of features.
+The **Random Forest Classifier** performed the best with about **96.20% accuracy**.
 
 ## Feature Importance
 
-Feature importance from the Decision Tree model was used to understand which variables helped the model make predictions.
+After training the Random Forest model, I looked at feature importance.
 
-The most important features supported the findings from the visualization section. Service-related features, especially **online boarding**, appeared to be highly important for predicting passenger satisfaction.
+The most important feature was:
 
-This means the model results matched the earlier exploratory analysis.
+- Online boarding
+
+Other important features included:
+
+- Inflight wifi service
+- Type of Travel
+- Class
+- Inflight entertainment
+- Seat comfort
+- Leg room service
+- Flight Distance
+- Customer Type
+- Ease of Online booking
+
+This matched the visualization section because Online boarding also had the biggest service rating difference between satisfied and dissatisfied passengers.
 
 ## Final Conclusion
 
-This project used an airline passenger satisfaction dataset to predict whether passengers were **satisfied** or **neutral or dissatisfied**.
+This project showed that airline passenger satisfaction can be predicted well using passenger information, travel details, service ratings, and delay-related features.
 
-The visualizations showed that service-related features had strong relationships with passenger satisfaction. In particular, **online boarding**, **inflight entertainment**, **seat comfort**, **on-board service**, **leg room service**, and **cleanliness** showed noticeable differences between satisfied and dissatisfied passengers.
+The strongest patterns came from service-related and travel-related features. In particular, **online boarding**, **inflight entertainment**, **seat comfort**, **inflight wifi service**, **class**, and **type of travel** were important.
 
-The categorical visualizations also showed that **customer type**, **type of travel**, and **class** were important. Business class passengers and business travel passengers were more likely to be satisfied, while personal travel and economy class passengers were more likely to be neutral or dissatisfied.
+The best model was the **Random Forest Classifier**, with about **96.20% accuracy**.
 
-After cleaning the data, handling missing values, encoding categorical variables, splitting the data, and scaling numerical features, I trained Logistic Regression and Decision Tree models.
-
-The Logistic Regression model achieved about **87.66% accuracy**, while the Decision Tree model achieved about **94.48% accuracy**. The Decision Tree performed better, suggesting that passenger satisfaction depends on feature combinations that may not be fully linear.
-
-Overall, the results suggest that airlines should prioritize improving controllable service factors, especially **online boarding** and the overall **in-flight experience**, to improve passenger satisfaction.
+Overall, the results suggest that airlines should focus on improving controllable service factors, especially **online boarding** and the overall in-flight experience, because these features were strongly associated with passenger satisfaction.
 
 ## Files in This Repository
 
 | File | Description |
 |---|---|
-| `Kaggle_from_stash.ipynb` | Main project notebook |
-| `train.csv` | Airline passenger satisfaction training data |
-| `README.md` | Project overview and summary |
+| `Airline_Passenger_Satisfaction_Project.ipynb` | Main project notebook |
+| `train.csv` | Dataset used for the project |
+| `README.md` | Project summary and explanation |
 
 ## Tools and Libraries Used
 
@@ -235,7 +311,7 @@ This project used:
 
 1. Download or clone this repository.
 2. Make sure `train.csv` is in the same folder as the notebook.
-3. Open `Kaggle_from_stash.ipynb`.
+3. Open `Airline_Passenger_Satisfaction_Project.ipynb`.
 4. Run the notebook from top to bottom.
 
-The notebook loads the dataset, performs data exploration, creates visualizations, prepares the data, trains machine learning models, and compares the results.
+The notebook loads the data, cleans it, creates visualizations, prepares the dataset for machine learning, trains models, compares results, and shows feature importance.
