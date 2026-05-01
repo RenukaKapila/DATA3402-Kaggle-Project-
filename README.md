@@ -145,6 +145,16 @@ I looked at numerical features such as:
 - Arrival Delay in Minutes
 
 These features showed some patterns, but many of the distributions overlapped between satisfied and dissatisfied passengers. This means they may help the model, but they are not strong enough by themselves.
+<img width="1004" height="518" alt="image" src="https://github.com/user-attachments/assets/7210ddf8-ba2f-4580-8bfc-28219299af1b" />
+
+<img width="895" height="500" alt="image" src="https://github.com/user-attachments/assets/9f892c9a-1e47-43b8-b0b2-c12d5dd3c9f1" />
+<img width="879" height="487" alt="image" src="https://github.com/user-attachments/assets/32249827-1029-447c-bf67-22769e57ed2a" />
+<img width="899" height="490" alt="image" src="https://github.com/user-attachments/assets/404a4711-1534-4e94-b760-408a328f40a2" />
+
+
+
+
+
 
 ### Categorical Features
 
