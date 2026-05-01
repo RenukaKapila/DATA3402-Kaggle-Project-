@@ -145,16 +145,10 @@ I looked at numerical features such as:
 - Arrival Delay in Minutes
 
 These features showed some patterns, but many of the distributions overlapped between satisfied and dissatisfied passengers. This means they may help the model, but they are not strong enough by themselves.
-<img width="1004" height="518" alt="image" src="https://github.com/user-attachments/assets/7210ddf8-ba2f-4580-8bfc-28219299af1b" />
-
-<img width="895" height="500" alt="image" src="https://github.com/user-attachments/assets/9f892c9a-1e47-43b8-b0b2-c12d5dd3c9f1" />
-<img width="879" height="487" alt="image" src="https://github.com/user-attachments/assets/32249827-1029-447c-bf67-22769e57ed2a" />
-<img width="899" height="490" alt="image" src="https://github.com/user-attachments/assets/404a4711-1534-4e94-b760-408a328f40a2" />
-
-
-
-
-
+<img width="793" height="451" alt="image" src="https://github.com/user-attachments/assets/56d67327-8d6b-4d10-ada2-ef7d32856455" />
+<img width="765" height="431" alt="image" src="https://github.com/user-attachments/assets/d71c6a37-623b-4e6a-ad6a-ae97766f1770" />
+<img width="767" height="434" alt="image" src="https://github.com/user-attachments/assets/849d392d-d01a-4492-8691-8bc0df9eaaf5" />
+<img width="786" height="438" alt="image" src="https://github.com/user-attachments/assets/999bdaf9-50c2-4a78-a988-8e2541404171" />
 
 ### Categorical Features
 
@@ -168,6 +162,11 @@ I also looked at categorical features such as:
 Gender did not show a very strong difference. However, Customer Type, Type of Travel, and Class showed clearer patterns.
 
 Business travelers and business class passengers were more likely to be satisfied, while personal travel and economy class passengers were more likely to be dissatisfied.
+
+<img width="1004" height="518" alt="image" src="https://github.com/user-attachments/assets/7210ddf8-ba2f-4580-8bfc-28219299af1b" />
+<img width="895" height="500" alt="image" src="https://github.com/user-attachments/assets/9f892c9a-1e47-43b8-b0b2-c12d5dd3c9f1" />
+<img width="879" height="487" alt="image" src="https://github.com/user-attachments/assets/32249827-1029-447c-bf67-22769e57ed2a" />
+<img width="899" height="490" alt="image" src="https://github.com/user-attachments/assets/404a4711-1534-4e94-b760-408a328f40a2" />
 
 ### Service Rating Difference
 
@@ -188,15 +187,7 @@ This chart compared average service ratings between satisfied and dissatisfied p
 
 The biggest difference was **Online boarding**. Satisfied passengers gave much higher online boarding ratings than dissatisfied passengers.
 
-Other important service features included:
-
-- Inflight entertainment
-- Seat comfort
-- On-board service
-- Leg room service
-- Cleanliness
-
-Based on the visualizations, **Online boarding** appeared to be one of the strongest features before modeling.
+<img width="779" height="389" alt="image" src="https://github.com/user-attachments/assets/01aba229-1b35-471b-bcf7-5b9e4950f286" />
 
 ## Data Preparation for Machine Learning
 
