@@ -1,14 +1,11 @@
 # Airline Satisfaction Predictor
-
-This repository uses the Airline Passenger Satisfaction dataset from Kaggle to predict whether a passenger is satisfied or dissatisfied using tabular machine learning models.
-
 ## Overview
 
-This project uses the Airline Passenger Satisfaction dataset from Kaggle to predict whether passengers are satisfied or dissatisfied.
+This project predicts airline passenger satisfaction using passenger details, travel information, service ratings, and delay-related features.
 
-We completed a full tabular machine learning workflow, including data cleaning, visualization, feature preparation, model training, and evaluation.
+The best model was **Random Forest**, which reached about **96.20% accuracy**. The strongest predictor was **Online boarding**, and the visual analysis also showed that service-related features had the clearest connection to passenger satisfaction.
 
-The best-performing model was Random Forest, with an accuracy of about **96.20%**.
+We also found a strong correlation of about **0.97** between `Departure Delay in Minutes` and `Arrival Delay in Minutes`, which helped us fill the missing arrival delay values.
 
 ## Summary of Work Done
 
@@ -74,7 +71,9 @@ The only column with missing values was `Arrival Delay in Minutes`.
 |---|---:|
 | Arrival Delay in Minutes | 310 |
 
-We did not delete these rows because delay information could still be useful for predicting passenger satisfaction.
+We did not delete these rows because delay information could still be useful for predicting passenger satisfaction. So we decided to use correlation matrix to check if we could use other features to fill in the missing values. 
+<img width="1104" height="857" alt="image" src="https://github.com/user-attachments/assets/f79fe114-553c-46f4-806d-9694d437f437" />
+
 
 To fill these missing values, we used information from `Departure Delay in Minutes`. These two columns had a strong positive correlation of about **0.97**, meaning flights that leave late usually also arrive late.
 
@@ -121,6 +120,9 @@ The main visualizations included:
 * Categorical feature comparisons
 * Service rating difference chart
 * Correlation heatmap
+<img width="691" height="495" alt="image" src="https://github.com/user-attachments/assets/e8a59e7c-004c-4691-907e-06a99d2e2115" />
+
+<img width="674" height="456" alt="image" src="https://github.com/user-attachments/assets/1e481aba-bca5-4169-a3e7-38ff74aa0ec0" />
 
 The target classes were slightly imbalanced.
 
@@ -134,6 +136,9 @@ The numerical features showed some patterns, but many of the distributions overl
 The categorical features showed clearer patterns. Customer Type, Type of Travel, and Class appeared more connected to satisfaction than Gender.
 
 The strongest visualization was the service rating difference chart. It compared average service ratings between satisfied and dissatisfied passengers.
+
+<img width="707" height="352" alt="image" src="https://github.com/user-attachments/assets/d948d0db-169a-4f46-8241-6a0be2797923" />
+
 
 Online boarding had the largest average rating difference between the two groups.
 
