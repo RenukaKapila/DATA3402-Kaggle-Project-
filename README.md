@@ -1,11 +1,7 @@
 # Airline Satisfaction Predictor
 ## Overview
 
-This project predicts airline passenger satisfaction using passenger details, travel information, service ratings, and delay-related features.
-
-The best model was **Random Forest**, which reached about **96.20% accuracy**. The strongest predictor was **Online boarding**, and the visual analysis also showed that service-related features had the clearest connection to passenger satisfaction.
-
-We also found a strong correlation of about **0.97** between `Departure Delay in Minutes` and `Arrival Delay in Minutes`, which helped us fill the missing arrival delay values.
+This project predicts airline passenger satisfaction using passenger details, travel information, service ratings, and delay-related features. The best model was **Random Forest**, which reached about **96.20% accuracy**. The strongest predictor was **Online boarding**, and the visual analysis also showed that service-related features had the clearest connection to passenger satisfaction. We also found a strong correlation of about **0.97** between `Departure Delay in Minutes` and `Arrival Delay in Minutes`, which helped us fill the missing arrival delay values.
 
 ## Summary of Work Done
 
