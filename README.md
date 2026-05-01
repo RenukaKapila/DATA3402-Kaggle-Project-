@@ -20,19 +20,18 @@ This is a **binary classification** problem.
 
 The target variable is:
 
-- `satisfied`
-- `neutral or dissatisfied`
+- satisfied
+- neutral or dissatisfied
 
 For presentation and explanation purposes, I refer to `neutral or dissatisfied` as **dissatisfied**. The original dataset label was not changed.
 
 For machine learning, the target variable was encoded as:
 
-- `0 = dissatisfied`
-- `1 = satisfied`
-
+- 0 = dissatisfied
+- 1 = satisfied
 ## Dataset Description
 
-The dataset has about **103,000 rows**.
+The dataset has about **103,000 rows** and 22 features.
 
 Some of the main features include:
 
