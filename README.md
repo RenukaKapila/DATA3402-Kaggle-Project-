@@ -88,6 +88,7 @@ The only column with missing values was:
 | Arrival Delay in Minutes | 310 |
 
 Instead of deleting these rows, I filled the missing values using a simple nearest-match approach.
+<img width="842" height="671" alt="image" src="https://github.com/user-attachments/assets/2dd95e07-c5cb-4c2f-b2f4-2d58fc982a71" />
 
 First, I checked the relationship between **Departure Delay in Minutes** and **Arrival Delay in Minutes**. These two columns had a very strong positive correlation of about **0.97**.
 
