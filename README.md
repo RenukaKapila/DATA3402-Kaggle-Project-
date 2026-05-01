@@ -1,8 +1,7 @@
 # Airline Satisfaction Predictor
+This project uses the **Airline Passenger Satisfaction** dataset from Kaggle to predict whether airline passengers are **satisfied** or **dissatisfied** based on passenger information, travel details, service ratings, and delay-related features.
 
 ## Project Overview
-
-This project uses the **Airline Passenger Satisfaction** dataset from Kaggle to predict whether airline passengers are **satisfied** or **dissatisfied** based on passenger information, travel details, service ratings, and delay-related features.
 
 The project is a **binary classification problem** because the target variable has two possible outcomes.
 
