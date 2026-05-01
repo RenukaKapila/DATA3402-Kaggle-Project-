@@ -138,6 +138,7 @@ The categorical features showed clearer patterns. Customer Type, Type of Travel,
 
 The strongest visualization was the service rating difference chart. It compared average service ratings between satisfied and dissatisfied passengers. For the service rating difference chart, we used a class-wise average comparison method. We grouped the data by satisfaction class and calculated the average rating for each service feature among satisfied passengers and dissatisfied passengers. Then, we subtracted the dissatisfied average from the satisfied average to measure the difference between the two groups. A larger difference meant the feature separated the two satisfaction classes more clearly. Using this method, Online boarding had the largest average difference, which showed that it was strongly connected to passenger satisfaction.
 
+
 <img width="818" height="407" alt="image" src="https://github.com/user-attachments/assets/9b9d9b51-c218-49a0-a280-1cef082debf2" />
 
 
